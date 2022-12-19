@@ -1,0 +1,15 @@
+Run docker-compose
+>docker-compose up --build --scale master=2
+>docker ps --format '{{.Names}}'
+
+Install K6 on Debian
+# add repo address
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C5AD17C747E3415A3642D57D77C6C491D6AC1D69
+echo "deb https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list
+
+# update repo and install
+sudo apt-get update
+sudo apt-get install k6
+
+To run k6
+> k6 run -u 20 -d 30s  --out json=test_results.json ./k6/test_script.js

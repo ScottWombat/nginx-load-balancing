@@ -1,0 +1,26 @@
+version: "3.9"
+services:
+  nginx:
+    container_name: nginx
+    build:
+      context: ./nginx
+    ports:
+        - 80:80
+    depends_on:
+        - lb_master
+  lb_master:
+    build:
+      context: ./master
+  weather:
+    build:
+      context: ./weather
+  news:
+    build:
+      context: ./news
+  #k6:
+  #  image: loadimpact/k6:latest
+  #  command: run /test.js
+  #  volumes:
+  #    - ./k6/test_script.js:/test.js
+  #  depends_on:
+  #    - nginx
